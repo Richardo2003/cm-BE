@@ -15,20 +15,20 @@ app.use(
   })
 );
 
-
 // dito
-const pelangganController = require("./pelanggan/pelanggan.controller"); 
+const pelangganController = require("./pelanggan/pelanggan.controller");
 app.use("/pelanggan", pelangganController);
 
 // kevin = pesanan
+const pesananController = require("./pesanan/pesanan.controller");
+app.use("/pesanan", pesananController);
 
-// fallen = menu
+const menuController = require("./menu/menu.controller");
+app.use("/menu", menuController);
 
 // rio & juan = item pesanan
+const itemPesananController = require("./itempesanan/itemPesanan.controller");
+app.use("/itempesanan", itemPesananController);
 
 
-
-
-app.listen(port, () =>
-  console.log(`Server running at http://localhost:${port}`)
-);
+app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
