@@ -27,5 +27,8 @@ const menuController = require("./menu/menu.controller");
 app.use("/menu", menuController);
 
 // rio & juan = item pesanan
+const itemPesananController = require("./itempesanan/itemPesanan.controller");
+app.use("/itempesanan", itemPesananController);
+
 
 app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
