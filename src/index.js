@@ -22,7 +22,8 @@ app.use("/pelanggan", pelangganController);
 
 // kevin = pesanan
 
-// fallen = menu
+const menuController = require("./menu/menu.controller");
+app.use("/menu", menuController);
 
 // rio & juan = item pesanan
 
