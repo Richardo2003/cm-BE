@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pelanggan {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  alamat    String
+  telepon   String
+  email     String
+  pesanan   Pesanan[]
+}
+
+model Pesanan {
+  id           Int         @id @default(autoincrement())
+  tanggal      DateTime
+  waktu        DateTime
+  lokasi       String
+  jumlah       Int
+  metode_bayar String
+  status       String
+  pelanggan    Pelanggan   @relation(fields: [pelangganId], references: [id])
+  pelangganId  Int
+  itemPesanan  ItemPesanan[]
+}
+
+model ItemPesanan {
+  id           Int      @id @default(autoincrement())
+  jumlah       Int
+  harga_total  Float
+  pesanan      Pesanan  @relation(fields: [pesananId], references: [id])
+  pesananId    Int
+  menu         Menu     @relation(fields: [menuId], references: [id])
+  menuId       Int
+}
+
+model Menu {
+  id          Int          @id @default(autoincrement())
+  nama        String
+  harga       Float
+  deskripsi   String
+  itemPesanan ItemPesanan[]
+}
