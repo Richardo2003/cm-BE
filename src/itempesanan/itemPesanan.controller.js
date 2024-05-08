@@ -1,6 +1,8 @@
 const {
     getAllItemsPesanan,
     createNewItemPesanan,
+    updateExistingItemPesanan,
+    deleteExistingItemPesanan,
     getItemPesananById
   
   } = require("./itemPesanan.service");
@@ -25,6 +27,15 @@ const {
     }
   });
   
+  router.put("/:id", async (req, res) => {
+    const updatedItemPesanan = await updateExistingItemPesanan(req.params.id, req.body);
+    res.json(updatedItemPesanan);
+  });
+  
+  router.delete("/:id", async (req, res) => {
+    const deletedItemPesanan = await deleteExistingItemPesanan(req.params.id);
+    res.json(deletedItemPesanan);
+  });
  
   
   module.exports = router;
